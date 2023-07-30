@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+
+{% block title %}New Work Order{% endblock %}
+
+{% block body_data %}
+<br>
+<br>
+<h3>Add New Work Orders:</h3>
+<form method="POST" action="/workorders" >
+    <table style="border: 5px solid #556b2f; border-radius:15px">
+        <tr>
+        <td><label for="apt_num">Apartment Number:</label></td>
+        <td><input type="text" id="apt_num" name="apt_num" required style="border-radius:15px;"></td>
+            </tr>
+        <tr>
+        <td> <label for="issue">Issue:</label> </td>
+        <td> <input type="text" id="issue" name="issue" required style="border-radius:15px;"></td>
+        </tr>
+            <tr>
+    <td><label for="status_issue">Status:</label></td>
+    <td>
+        <select id="status_issue" name="status_issue" required style="border-radius:15px;">
+                    <option value="Open">Open</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Closed">Closed</option>
+                </select>
+    </td>
+        </tr>
+        <tr>
+            <td></td>
+    <td align="right"><input type="submit" value="Add" style="background-color:#556b2f; border-radius:15px;"></td>
+        </tr>
+    </table>
+</form>
+{% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+{% endif %}
+{% if form_submitted %}
+    <p>Work Order Submitted Successfully</p>
+{% endif %}
+{% endblock %}

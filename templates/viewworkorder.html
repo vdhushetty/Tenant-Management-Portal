@@ -1,0 +1,60 @@
+{% extends 'index.html' %}
+
+{% block title %}View Work Orders{% endblock %}
+
+{% block body_data %}
+<style>
+    .restable {
+        border: 2px solid #556b2f;
+    }
+</style>
+<br>
+<br>
+<h3>Search for Work orders here:</h3>
+<form method="POST" action="/viewworkorder">
+    <table style="border: 5px solid #556b2f; border-radius: 15px">
+        <tr>
+            <td><label for="search_apt_num">Apartment Number:</label></td>
+            <td><input type="text" id="search_apt_num" name="search_apt_num" style="border-radius: 15px;"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td align="right"><input type="submit" style="background-color: #556b2f; border-radius: 15px;" value="Search"></td>
+        </tr>
+    </table>
+</form>
+{% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+{% endif %}
+{% if success_message %}
+  <p>{{ success_message }}</p>
+{% endif %}
+{% if tenants %}
+    <h4>Work Orders:</h4>
+    <table class="restable">
+        <tr class="restable">
+            <th class="restable">ID</th>
+            <th class="restable">Apartment Number</th>
+            <th class="restable">Name</th>
+            <th class="restable">Update Status</th>
+        </tr>
+        {% for tenant in tenants %}
+        <tr>
+            <td class="restable">{{ tenant[0] }}</td>
+            <td class="restable">{{ tenant[1] }}</td>
+            <td class="restable">{{ tenant[2] }}</td>
+            <td class="restable">
+                <form method="POST" action="/updatestatus/{{ tenant[0] }}">
+                    <select name="status">
+                        <option value="Open" {% if tenant[3] == "Open" %}selected{% endif %}>Open</option>
+                        <option value="In Progress" {% if tenant[3] == "In Progress" %}selected{% endif %}>In Progress</option>
+                        <option value="Completed" {% if tenant[3] == "Completed" %}selected{% endif %}>Completed</option>
+                    </select>
+                    <input type="submit" value="Update">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+{% endblock %}

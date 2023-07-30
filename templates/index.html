@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Tenant Management portal{% endblock %}</title>
+    <style>
+        header {
+            background-color: #556b2f;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+
+            text-decoration-style: solid;
+            color: white;
+
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Tenant Management Portal</h1>
+        <p>{% block content %}Galaxy Apartments{% endblock %}</p>
+        <nav>
+            <ul>
+                <li {% if active == 'home' %} class="active"{% endif %}><a href="/">Home</a></li>
+                <li {% if active == 'new_tenant' %} class="active"{% endif %}><a href="/newtenant">New Tenant</a></li>
+                <li {% if active == 'view_tenant' %} class="active"{% endif %}><a href="/viewtenant">View Tenants</a></li>
+                <li {% if active == 'work_orders' %} class="active"{% endif %}><a href="/workorders">Work Orders</a></li>
+                <li {% if active == 'view_work_orders' %} class="active"{% endif %}><a href="/viewworkorder">View/Update Work Orders</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div align="center">
+        {% block body_data %}
+        <br>
+        <br>
+        <h3>You could do the following using this application:</h3>
+        <ul style="list-style-type: none">
+            <h3><li>Add New Tenant</li>
+            <li>Search Tenants</li>
+            <li>Work Order</li>
+            <li>View/Update Work Orders</li></h3>
+        </ul>
+        {% endblock %}
+    </div>
+</body>
+</html>

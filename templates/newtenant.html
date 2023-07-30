@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+
+{% block title %}New Tenant Page{% endblock %}
+
+{% block body_data %}
+<br>
+<br>
+<h3>Fill in the below details to add a new tenant:</h3>
+<form action="/newtenant" method="POST">
+    <table style="border: 5px solid #556b2f; border-radius:15px">
+        <tr>
+            <td><label for="apt_num">Apartment Number:</label></td>
+            <td><input id="apt_num" name="apt_num" required style="border-radius:15px;" type="text"></td>
+        </tr>
+        <tr>
+            <td><label for="name">Owner Name:</label></td>
+            <td><input id="name" name="name" required style="border-radius:15px;" type="text"></td>
+        </tr>
+        <tr>
+            <td><label for="rent">Rent:</label></td>
+            <td><input id="rent" name="rent" required style="border-radius:15px;" type="text"></td>
+        </tr>
+        <tr>
+            <td><label for="ph_num">Phone Number:</label></td>
+            <td><input id="ph_num" name="ph_num" required style="border-radius:15px;" type="text"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td align="right"><input style="background-color:#556b2f; border-radius:15px;" type="submit" value="Add">
+            </td>
+        </tr>
+    </table>
+</form>
+{% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+{% endif %}
+{% if form_submitted %}
+<p>New Tenant Added Successfully</p>
+{% endif %}
+{% endblock %}
